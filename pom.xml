@@ -9,8 +9,8 @@
     <version>1.0</version>
     <description>Game project homework for university.</description>
     <scm>
-        <connection></connection>
-        <developerConnection></developerConnection>
+        <connection>https://github.com/marcszeg/homework-game.git</connection>
+        <developerConnection>https://github.com/marcszeg/homework-game.git</developerConnection>
     </scm>
     <developers>
         <developer>

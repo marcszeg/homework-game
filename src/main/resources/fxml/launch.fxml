@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Launch">
+   <children>
+      <Button layoutX="248.0" layoutY="277.0" mnemonicParsing="false" onAction="#startAction" prefHeight="33.0" prefWidth="104.0" text="Start">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <GridPane layoutX="154.0" layoutY="172.0" prefHeight="70.0" prefWidth="294.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Blue Player:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Red Player:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="bluePlayerName" alignment="CENTER_RIGHT" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="redPlayerName" alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+         </children>
+      </GridPane>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="144.0" layoutY="34.0" text="Homework Game">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="186.0" layoutY="141.0" text="Please enter your names:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="130.0" layoutY="310.0" prefHeight="44.0" prefWidth="341.0" spacing="20.0">
+         <children>
+            <Button fx:id="rules" mnemonicParsing="false" onAction="#handleRulesButton" prefHeight="33.0" prefWidth="117.0" text="Game Rules" />
+            <Button fx:id="scores" layoutX="122.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleScoresButton" prefHeight="33.0" prefWidth="117.0" text="Highscores" />
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding></HBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Scores">
+    <children>
+        <TableView fx:id="highScoreTable" editable="true" layoutX="25.0" layoutY="74.0" prefHeight="439.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="winner" prefWidth="150.0" text="Winner" />
+                <TableColumn fx:id="against" prefWidth="150.0" text="Against" />
+                <TableColumn fx:id="duration" prefWidth="150.0" text="Duration" />
+                <TableColumn fx:id="created" maxWidth="150.0" minWidth="-1.0" prefWidth="150.0" text="Date" />
+            </columns>
+        </TableView>
+        <Button fx:id="menu" layoutX="265.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="39.0" prefWidth="122.0" text="Menu">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="21.0" text="Highscores">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+    </children>
+
+</AnchorPane>
