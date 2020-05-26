@@ -242,7 +242,7 @@ public class HomeworkGameState implements Cloneable {
         }
     }
 
-    public HomeworkGameState clone() {
+    /*public HomeworkGameState clone() {
         HomeworkGameState copy = null;
         try {
             copy = (HomeworkGameState) super.clone();
@@ -253,7 +253,7 @@ public class HomeworkGameState implements Cloneable {
             copy.board[i] = board[i].clone();
         }
         return copy;
-    }
+    }*/
 
     public String toString() {
         StringBuilder sb = new StringBuilder();

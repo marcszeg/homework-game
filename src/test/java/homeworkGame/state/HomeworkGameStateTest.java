@@ -58,14 +58,57 @@ class HomeworkGameStateTest {
 
     @Test
     void moveDisc() {
+        /*HomeworkGameState stateRed = new HomeworkGameState(new int[][] {
+                {0, 0, 0, 2, 1},
+                {2, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0},
+                {0, 2, 0, 0, 0},
+                {0, 1, 0, 0, 0}});
+        HomeworkGameState expectedRed = new HomeworkGameState(new int[][] {
+                {0, 0, 0, 2, 1},
+                {0, 2, 0, 1, 0},
+                {0, 0, 0, 0, 0},
+                {0, 2, 0, 0, 0},
+                {0, 1, 0, 0, 0}});
 
+        stateRed.moveDisc(1, 0, 1, 1);
+        assertEquals(expectedRed.getBoard()[1][1], stateRed.getBoard()[1][1]);
+
+
+        HomeworkGameState stateBlue = new HomeworkGameState(new int[][] {
+                {0, 0, 0, 2, 1},
+                {2, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0},
+                {0, 2, 0, 0, 0},
+                {0, 1, 0, 0, 0}});
+        HomeworkGameState expectedBlue = new HomeworkGameState(new int[][] {
+                {0, 0, 0, 1, 0},
+                {2, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0},
+                {0, 2, 0, 0, 0},
+                {0, 1, 0, 0, 0}});
+
+        stateBlue.moveDisc(0, 4, 0, 3);
+        assertEquals(expectedBlue.getBoard()[1][1], stateBlue.getBoard()[1][1]); */
     }
 
-    @Test
+    /*@Test
     void testClone() {
-    }
+
+    }*/
 
     @Test
     void testToString() {
+        /*HomeworkGameState state = new HomeworkGameState(/*new int[][] {
+                {0, 0, 0, 2, 1},
+                {2, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0},
+                {0, 2, 0, 0, 0},
+                {0, 1, 0, 0, 0}});
+        assertEquals("2 2 2 2 1 \n"
+                            + "2 2 2 2 2 \n"
+                            + "2 2 1 2 2 \n"
+                            + "2 2 2 2 2 \n"
+                            + "1 2 2 2 2 \n", state.toString());*/
     }
 }

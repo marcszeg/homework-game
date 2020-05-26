@@ -1,18 +1,13 @@
 package homeworkGame.state;
 
-import com.sun.javafx.scene.traversal.Direction;
-
+/**
+ * Class representing the empty slots and the discs.
+ */
 public enum Slot {
 
     EMPTY,
     BLUE,
     RED;
-
-    private static final int[][] T = {
-            {0, 0, 0, 0},
-            {1, 1, 1, 1},
-            {2, 2, 2, 2}
-    };
 
     /**
      * Returns the instance represented by the value specified.
