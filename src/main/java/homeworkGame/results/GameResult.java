@@ -1,4 +1,4 @@
-package game.results;
+package homeworkGame.results;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

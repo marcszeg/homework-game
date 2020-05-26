@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Scores">
+<AnchorPane prefHeight="500.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homeworkGame.javafx.controller.RulesController">
     <children>
         <Button fx:id="menu" layoutX="214.0" layoutY="421.0" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="39.0" prefWidth="122.0" text="Menu">
          <font>
@@ -16,7 +16,7 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <TextArea editable="false" layoutX="50.0" layoutY="78.0" prefHeight="317.0" prefWidth="450.0" text="This game can be played by 2 players. &#10;One plays with red, the other with blue discs.&#10;'Blue Player' starts the game&#10;&#10;Every round, every player makes one step. &#10;Blue discs can only be placed on slots, where &#10;is a red disc. The stepped-on red discs will be &#10;removed. Red discs can be can only be &#10;placed on empty slots.&#10;&#10;'Red Player' wins the game, if every blue discs &#10;is in the same row or column. &#10;'Blue Player' wins, if he/she can't make more &#10;steps.">
+      <TextArea editable="false" layoutX="50.0" layoutY="78.0" prefHeight="317.0" prefWidth="450.0" text="This homeworkGame can be played by 2 players. &#10;One plays with red, the other with blue discs.&#10;'Blue Player' starts the homeworkGame&#10;&#10;Every round, every player makes one step. &#10;Blue discs can only be placed on slots, where &#10;is a red disc. The stepped-on red discs will be &#10;removed. Red discs can be can only be &#10;placed on empty slots.&#10;&#10;'Red Player' wins the homeworkGame, if every blue discs &#10;is in the same row or column. &#10;'Blue Player' wins, if he/she can't make more &#10;steps.">
          <font>
             <Font size="18.0" />
          </font>

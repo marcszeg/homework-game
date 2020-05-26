@@ -1,4 +1,4 @@
-package game.results;
+package homeworkGame.results;
 
 import com.google.inject.persist.Transactional;
 import util.jpa.GenericJpaDao;
