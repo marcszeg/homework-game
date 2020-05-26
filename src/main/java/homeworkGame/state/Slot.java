@@ -38,21 +38,6 @@ public enum Slot {
         return ordinal();
     }
 
-    /**
-     * Moves the disc to the direction specified
-     *
-     * @param direction the direction to which the discw is moved.
-     * @return the disc moved to the direction specified.
-     * @throws UnsupportedOperationException if the method is invoked
-     * on the {@link #EMPTY} instance.
-     */
-    /*public Slot moveTo(Direction direction){
-        if (this == EMPTY) {
-            throw new UnsupportedOperationException();
-        }
-        return values()[T[ordinal()][direction.ordinal()]];
-    }*/
-
     public String toString() {
         return Integer.toString(ordinal());
     }

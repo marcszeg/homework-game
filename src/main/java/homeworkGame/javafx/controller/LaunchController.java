@@ -21,9 +21,6 @@ public class LaunchController {
     @Inject
     private FXMLLoader fxmlLoader;
 
-    //@FXML
-    //public AnchorPane rootPane;
-
     @FXML
     private TextField bluePlayerTextField;
 
@@ -36,6 +33,7 @@ public class LaunchController {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+        log.info("Loading rules...");
     }
 
     public void showHighscores(ActionEvent actionEvent) throws IOException {
@@ -44,6 +42,7 @@ public class LaunchController {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+        log.info("Loading highscores...");
     }
 
     public void startAction(ActionEvent actionEvent) throws IOException {
@@ -54,6 +53,7 @@ public class LaunchController {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+        log.info("Blue Players name  is set to {}, and Red Players name is set to {}", bluePlayerTextField.getText(), redPlayerTextField.getText());
     }
 
 }

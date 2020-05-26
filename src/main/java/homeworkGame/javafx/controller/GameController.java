@@ -78,15 +78,14 @@ public class GameController {
     @FXML
     public void initialize() {
         discImages = List.of(
-                new Image(getClass().getResource("/images/red.png").toExternalForm()),
+                new Image(getClass().getResource("/images/empty.png").toExternalForm()),
                 new Image(getClass().getResource("/images/blue.png").toExternalForm()),
-                new Image(getClass().getResource("/images/empty.png").toExternalForm())
+                new Image(getClass().getResource("/images/red.png").toExternalForm())
         );
         gameOver.addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 log.info("Game is over");
                 log.debug("Saving result to database...");
-                gameResultDao.persist(createGameResult());
                 stopWatchTimeline.stop();
             }
         });
@@ -136,6 +135,7 @@ public class GameController {
                 winnerName = bluePlayerName;
                 opponentName = redPlayerName;
                 giveUpButton.setText("Finish");
+                gameResultDao.persist(createGameResult());
             }
             else if (gameState.isRedWon()) {
                 gameOver.setValue(true);
@@ -144,6 +144,7 @@ public class GameController {
                 winnerName = redPlayerName;
                 opponentName = bluePlayerName;
                 giveUpButton.setText("Finish");
+                gameResultDao.persist(createGameResult());
             }
         }
 

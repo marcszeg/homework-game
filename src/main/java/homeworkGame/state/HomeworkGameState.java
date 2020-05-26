@@ -26,7 +26,7 @@ public class HomeworkGameState implements Cloneable {
     /**
      * The array storing the current configuration of the board.
      */
-    @Setter(AccessLevel.NONE)
+
         private Slot[][] board;
 
     /**
