@@ -22,10 +22,10 @@ public class LaunchController {
     private FXMLLoader fxmlLoader;
 
     @FXML
-    private TextField bluePlayerTextField;
+    private TextField bluePlayerName;
 
     @FXML
-    private TextField redPlayerTextField;
+    private TextField redPlayerName;
 
     public void showRules(ActionEvent actionEvent) throws IOException {
         fxmlLoader.setLocation(getClass().getResource("/fxml/rules.fxml"));
@@ -48,12 +48,12 @@ public class LaunchController {
     public void startAction(ActionEvent actionEvent) throws IOException {
         fxmlLoader.setLocation(getClass().getResource("/fxml/game.fxml"));
         Parent root = fxmlLoader.load();
-        fxmlLoader.<GameController>getController().setBluePlayerName(bluePlayerTextField.getText());
-        fxmlLoader.<GameController>getController().setRedPlayerName(redPlayerTextField.getText());
+        fxmlLoader.<GameController>getController().setBluePlayerName(bluePlayerName.getText());
+        fxmlLoader.<GameController>getController().setRedPlayerName(redPlayerName.getText());
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
-        log.info("Blue Players name  is set to {}, and Red Players name is set to {}", bluePlayerTextField.getText(), redPlayerTextField.getText());
+        log.info("Blue Players name  is set to {}, and Red Players name is set to {}", bluePlayerName.getText(), redPlayerName.getText());
     }
 
 }

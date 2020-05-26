@@ -45,8 +45,10 @@ public class GameController {
     private String redPlayerName;
     private String winnerName;
     private String opponentName;
+    private boolean isGonnaSelect;
     private int fromRow;
     private int fromCol;
+    private int currentPlayer;
     private HomeworkGameState gameState;
     private Instant startTime;
     private List<Image> discImages;
@@ -94,11 +96,13 @@ public class GameController {
 
     private void resetGame() {
         gameState = new HomeworkGameState();
+        currentPlayer = 1;
+        isGonnaSelect = true;
         startTime = Instant.now();
         gameOver.setValue(false);
         displayGameState();
         createStopWatch();
-        Platform.runLater(() -> messageLabel.setText(bluePlayerName + " VS " + redPlayerName));
+        Platform.runLater(() -> messageLabel.setText("*" + bluePlayerName + "* VS " + redPlayerName));
     }
 
     private void displayGameState() {
@@ -111,23 +115,66 @@ public class GameController {
                 view.setImage(discImages.get(gameState.getBoard()[i][j].getValue()));
             }
         }
+        if (currentPlayer == 1) {
+            messageLabel.setText("*" + bluePlayerName + "* VS " + redPlayerName);
+        }
+        else
+            messageLabel.setText(bluePlayerName + " VS *" + redPlayerName + "*");
     }
 
-    /*public void handleEnterOnDisc(MouseEvent mouseEvent) {
-        
-    }*/
+    public void handleClick (MouseEvent mouseEvent) {
+        if (isGonnaSelect)
+        {
+            fromRow = GridPane.getRowIndex((Node) mouseEvent.getSource());
+            fromCol = GridPane.getColumnIndex((Node) mouseEvent.getSource());
+            log.info("Disc selected at ({}, {})", fromRow, fromCol);
+            isGonnaSelect = false;
+        }
+        else if (!isGonnaSelect) {
+            int toRow = GridPane.getRowIndex((Node) mouseEvent.getSource());
+            int toCol = GridPane.getColumnIndex((Node) mouseEvent.getSource());
+            if (/*!gameState.isBlueWon() && !gameState.isRedWon() &&*/ gameState.canMove(fromRow, fromCol, toRow, toCol)) {
+                gameState.moveDisc(fromRow, fromCol, toRow, toCol);
+                log.debug("Disc moved to ({}, {})", toRow, toCol);
+                if (gameState.isBlueWon()) {
+                    gameOver.setValue(true);
+                    log.info("Player {} has won the game", bluePlayerName);
+                    messageLabel.setText(bluePlayerName + "won the Game!");
+                    winnerName = bluePlayerName;
+                    opponentName = redPlayerName;
+                    giveUpButton.setText("Finish");
+                    gameResultDao.persist(createGameResult());
+                } else if (gameState.isRedWon()) {
+                    gameOver.setValue(true);
+                    log.info("Player {} has won the game", redPlayerName);
+                    messageLabel.setText(redPlayerName + "won the Game!");
+                    winnerName = redPlayerName;
+                    opponentName = bluePlayerName;
+                    giveUpButton.setText("Finish");
+                    gameResultDao.persist(createGameResult());
+                }
 
-    public void handlePressOnDisc(MouseEvent mouseEvent) {
+                if (currentPlayer == 1)
+                    currentPlayer = 2;
+                else
+                    currentPlayer = 1;
+            }
+            isGonnaSelect = true;
+        }
+        displayGameState();
+    }
+
+    /*public void handlePressOnDisc(MouseEvent mouseEvent) {
         fromRow = GridPane.getRowIndex((Node) mouseEvent.getSource());
         fromCol = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-    }
+    }*/
 
-    public void handleReleaseOnSlot(MouseEvent mouseEvent) {
+    /*public void handleReleaseOnSlot(MouseEvent mouseEvent) {
         int toRow = GridPane.getRowIndex((Node) mouseEvent.getSource());
         int toCol = GridPane.getColumnIndex((Node) mouseEvent.getSource());
         log.debug("Disc moved to ({}, {})", toRow, toCol);
         if ( !gameState.isBlueWon() && !gameState.isRedWon() && gameState.canMove(fromRow, fromCol, toRow, toCol)) {
-            //gameState.moveToSlot(fromRow, fromCol, toRow, toCol);
+            gameState.moveDisc(fromRow, fromCol, toRow, toCol);
             if (gameState.isBlueWon()) {
                 gameOver.setValue(true);
                 log.info("Player {} has won the game", bluePlayerName);
@@ -149,7 +196,7 @@ public class GameController {
         }
 
         displayGameState();
-    }
+    }*/
 
 
     public void handleGiveUpButton(ActionEvent actionEvent) throws IOException {
@@ -160,7 +207,7 @@ public class GameController {
         }
         gameOver.setValue(true);
         log.info("Loading high scores scene...");
-        fxmlLoader.setLocation(getClass().getResource("/fxml/highscores.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/fxml/scores.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

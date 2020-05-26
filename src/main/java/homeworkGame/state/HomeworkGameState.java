@@ -26,12 +26,12 @@ public class HomeworkGameState implements Cloneable {
     /**
      * The array storing the current configuration of the board.
      */
-
+    @Setter(AccessLevel.NONE)
         private Slot[][] board;
 
     /**
      * Creates a {@code HomeworkGameState} object representing the (original)
-     * initial state of the puzzle.
+     * initial state of the game.
      */
     public HomeworkGameState() {
         this(INITIAL);
@@ -56,6 +56,11 @@ public class HomeworkGameState implements Cloneable {
 
     private void initBoard(int[][] a) {
         this.board = new Slot[5][5];
+        for (int i = 0; i < 5; ++i) {
+            for (int j = 0; j < 5; ++j) {
+                this.board[i][j] = Slot.of(a[i][j]);
+            }
+        }
     }
 
     private boolean isValidBoard(int[][] a) {
@@ -88,8 +93,6 @@ public class HomeworkGameState implements Cloneable {
         return enoughDiscs;
     }
 
-//--------------------OK----------------------------------------
-
     /**
      * Checks if Blue Player won the game.
      * 
@@ -103,7 +106,7 @@ public class HomeworkGameState implements Cloneable {
         int noMoveBlueNum = 0;
 
         for (int i=0; i<5; i++) {
-            for (int j=0; i<5; j++) {
+            for (int j=0; j<5; j++) {
                 if (board[i][j] == Slot.BLUE) {
                     bluePositions[a][0] = i;
                     bluePositions[a][1] = j;
@@ -172,7 +175,7 @@ public class HomeworkGameState implements Cloneable {
         boolean colCheck;
 
         for (int i=0; i<5; i++) {
-            for (int j=0; i<5; j++) {
+            for (int j=0; j<5; j++) {
                 if (board[i][j] == Slot.BLUE) {
                     bluePositions[a][0] = i;
                     bluePositions[a][1] = j;
@@ -182,7 +185,7 @@ public class HomeworkGameState implements Cloneable {
         }
 
         rowCheck = bluePositions[0][0] == bluePositions[1][0] && bluePositions[1][0] == bluePositions[2][0];
-        colCheck = bluePositions[0][0] == bluePositions[0][1] && bluePositions[0][1] == bluePositions[0][2];
+        colCheck = bluePositions[0][1] == bluePositions[1][1] && bluePositions[0][1] == bluePositions[2][1];
 
         return rowCheck || colCheck;
     }
@@ -242,7 +245,7 @@ public class HomeworkGameState implements Cloneable {
         }
     }
 
-    /*public HomeworkGameState clone() {
+    public HomeworkGameState clone() {
         HomeworkGameState copy = null;
         try {
             copy = (HomeworkGameState) super.clone();
@@ -253,7 +256,7 @@ public class HomeworkGameState implements Cloneable {
             copy.board[i] = board[i].clone();
         }
         return copy;
-    }*/
+    }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
