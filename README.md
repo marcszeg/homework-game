@@ -1,4 +1,4 @@
-# homework-homeworkGame
+# homework-game
 
 A homework game project for university.
 
