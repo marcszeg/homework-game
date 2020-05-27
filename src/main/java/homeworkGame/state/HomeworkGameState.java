@@ -245,6 +245,11 @@ public class HomeworkGameState implements Cloneable {
         }
     }
 
+    /**
+     * Creates a copy of the current board.
+     *
+     * @return the copy of the board.
+     */
     public HomeworkGameState clone() {
         HomeworkGameState copy = null;
         try {
@@ -258,6 +263,11 @@ public class HomeworkGameState implements Cloneable {
         return copy;
     }
 
+    /**
+     * Creates a string of the board's current state.
+     *
+     * @return the string of the board.
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Slot[] row : board) {

@@ -1,4 +1,4 @@
 /**
- * Defines the state-space representation of the rolling cubes puzzle.
+ * Defines the representation of the game.
  */
 package homeworkGame.state;

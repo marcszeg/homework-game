@@ -33,6 +33,11 @@ public enum Slot {
         return ordinal();
     }
 
+    /**
+     * Creates a string of the value of the slot.
+     *
+     * @return string of the value of the slot.
+     */
     public String toString() {
         return Integer.toString(ordinal());
     }
