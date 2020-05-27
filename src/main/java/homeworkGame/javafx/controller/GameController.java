@@ -90,6 +90,7 @@ public class GameController {
                 log.debug("Saving result to database...");
                 stopWatchTimeline.stop();
             }
+
         });
         resetGame();
     }
@@ -120,6 +121,12 @@ public class GameController {
         }
         else
             messageLabel.setText(bluePlayerName + " VS *" + redPlayerName + "*");
+
+        if (gameState.isBlueWon()) {
+            messageLabel.setText(bluePlayerName + " won the Game!");
+        } else if (gameState.isRedWon()) {
+            messageLabel.setText(redPlayerName + " won the Game!");
+        }
     }
 
     public void handleClick (MouseEvent mouseEvent) {
@@ -129,17 +136,18 @@ public class GameController {
             fromCol = GridPane.getColumnIndex((Node) mouseEvent.getSource());
             log.info("Disc selected at ({}, {})", fromRow, fromCol);
             isGonnaSelect = false;
+            displayGameState();
         }
         else if (!isGonnaSelect) {
             int toRow = GridPane.getRowIndex((Node) mouseEvent.getSource());
             int toCol = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-            if (/*!gameState.isBlueWon() && !gameState.isRedWon() &&*/ gameState.canMove(fromRow, fromCol, toRow, toCol)) {
-                gameState.moveDisc(fromRow, fromCol, toRow, toCol);
-                log.debug("Disc moved to ({}, {})", toRow, toCol);
+            if (!gameState.isBlueWon() && !gameState.isRedWon() && gameState.canMove(fromRow, fromCol, toRow, toCol, currentPlayer)) {
+                gameState.moveDisc(fromRow, fromCol, toRow, toCol, currentPlayer);
+                log.info("Disc moved to ({}, {})", toRow, toCol);
                 if (gameState.isBlueWon()) {
                     gameOver.setValue(true);
                     log.info("Player {} has won the game", bluePlayerName);
-                    messageLabel.setText(bluePlayerName + "won the Game!");
+                    //messageLabel.setText(bluePlayerName + "won the Game!");
                     winnerName = bluePlayerName;
                     opponentName = redPlayerName;
                     giveUpButton.setText("Finish");
@@ -147,7 +155,7 @@ public class GameController {
                 } else if (gameState.isRedWon()) {
                     gameOver.setValue(true);
                     log.info("Player {} has won the game", redPlayerName);
-                    messageLabel.setText(redPlayerName + "won the Game!");
+                    //messageLabel.setText(redPlayerName + "won the Game!");
                     winnerName = redPlayerName;
                     opponentName = bluePlayerName;
                     giveUpButton.setText("Finish");
@@ -160,44 +168,10 @@ public class GameController {
                     currentPlayer = 1;
             }
             isGonnaSelect = true;
+            displayGameState();
         }
-        displayGameState();
+
     }
-
-    /*public void handlePressOnDisc(MouseEvent mouseEvent) {
-        fromRow = GridPane.getRowIndex((Node) mouseEvent.getSource());
-        fromCol = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-    }*/
-
-    /*public void handleReleaseOnSlot(MouseEvent mouseEvent) {
-        int toRow = GridPane.getRowIndex((Node) mouseEvent.getSource());
-        int toCol = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-        log.debug("Disc moved to ({}, {})", toRow, toCol);
-        if ( !gameState.isBlueWon() && !gameState.isRedWon() && gameState.canMove(fromRow, fromCol, toRow, toCol)) {
-            gameState.moveDisc(fromRow, fromCol, toRow, toCol);
-            if (gameState.isBlueWon()) {
-                gameOver.setValue(true);
-                log.info("Player {} has won the game", bluePlayerName);
-                messageLabel.setText(bluePlayerName + "won the Game!");
-                winnerName = bluePlayerName;
-                opponentName = redPlayerName;
-                giveUpButton.setText("Finish");
-                gameResultDao.persist(createGameResult());
-            }
-            else if (gameState.isRedWon()) {
-                gameOver.setValue(true);
-                log.info("Player {} has won the game", redPlayerName);
-                messageLabel.setText(redPlayerName + "won the Game!");
-                winnerName = redPlayerName;
-                opponentName = bluePlayerName;
-                giveUpButton.setText("Finish");
-                gameResultDao.persist(createGameResult());
-            }
-        }
-
-        displayGameState();
-    }*/
-
 
     public void handleGiveUpButton(ActionEvent actionEvent) throws IOException {
         String buttonText = ((Button) actionEvent.getSource()).getText();

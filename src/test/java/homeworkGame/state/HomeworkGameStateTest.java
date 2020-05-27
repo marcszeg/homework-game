@@ -87,13 +87,13 @@ class HomeworkGameStateTest {
                 {2, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0},
                 {0, 2, 0, 0, 0},
-                {0, 1, 0, 0, 0}}).canMove(0, 4, 0, 3));
+                {0, 1, 0, 0, 0}}).canMove(0, 4, 0, 3, 1));
         assertFalse(new HomeworkGameState(new int[][] {
                 {0, 0, 0, 2, 1},
                 {2, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0},
                 {0, 2, 0, 0, 0},
-                {0, 1, 0, 0, 0}}).canMove(1, 3, 2, 3));
+                {0, 1, 0, 0, 0}}).canMove(1, 3, 2, 3, 1));
     }
 
     @Test
@@ -111,7 +111,7 @@ class HomeworkGameStateTest {
                 {0, 2, 0, 0, 0},
                 {0, 1, 0, 0, 0}});
 
-        stateRed.moveDisc(1, 0, 1, 1);
+        stateRed.moveDisc(1, 0, 1, 1, 2);
         assertEquals(expectedRed.getBoard()[1][1], stateRed.getBoard()[1][1]);
 
 
@@ -128,7 +128,7 @@ class HomeworkGameStateTest {
                 {0, 2, 0, 0, 0},
                 {0, 1, 0, 0, 0}});
 
-        stateBlue.moveDisc(0, 4, 0, 3);
+        stateBlue.moveDisc(0, 4, 0, 3, 1);
         assertEquals(expectedBlue.getBoard()[1][1], stateBlue.getBoard()[1][1]);
     }
 

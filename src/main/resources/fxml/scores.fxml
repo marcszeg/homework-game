@@ -11,8 +11,8 @@
     <children>
         <TableView fx:id="highScoreTable" editable="true" layoutX="25.0" layoutY="74.0" prefHeight="439.0" prefWidth="600.0">
             <columns>
-                <TableColumn fx:id="winner" prefWidth="150.0" text="Winner" />
-                <TableColumn fx:id="against" prefWidth="150.0" text="Against" />
+                <TableColumn fx:id="winPlayer" prefWidth="150.0" text="Winner" />
+                <TableColumn fx:id="opPlayer" prefWidth="150.0" text="Against" />
                 <TableColumn fx:id="duration" prefWidth="150.0" text="Duration" />
                 <TableColumn fx:id="created" maxWidth="150.0" minWidth="-1.0" prefWidth="150.0" text="Date" />
             </columns>

@@ -121,37 +121,37 @@ public class HomeworkGameState implements Cloneable {
             
             if (bR == 0) {
                 if (bC == 0) {
-                    if (!canMove(bR, bC, bR-1, bC) && !canMove(bR, bC, bR, bC+1))
+                    if (!canMove(bR, bC, bR-1, bC, 1) && !canMove(bR, bC, bR, bC+1, 1))
                         noMoveBlueNum++;
                 }
                 else if (bC == 4) {
-                    if (!canMove(bR, bC, bR-1, bC) && !canMove(bR, bC, bR, bC-1))
+                    if (!canMove(bR, bC, bR-1, bC, 1) && !canMove(bR, bC, bR, bC-1, 1))
                         noMoveBlueNum++;
                 }
-                else if (!canMove(bR, bC, bR-1, bC) && !canMove(bR, bC, bR, bC-1) && !canMove(bR, bC, bR, bC+1))
+                else if (!canMove(bR, bC, bR-1, bC, 1) && !canMove(bR, bC, bR, bC-1, 1) && !canMove(bR, bC, bR, bC+1, 1))
                     noMoveBlueNum++;
             }
             else if (bR == 4) {
                 if (bC == 0) {
-                    if (!canMove(bR, bC, bR+1, bC) && !canMove(bR, bC, bR, bC+1))
+                    if (!canMove(bR, bC, bR+1, bC, 1) && !canMove(bR, bC, bR, bC+1, 1))
                         noMoveBlueNum++;
                 }
                 else if (bC == 4) {
-                    if (!canMove(bR, bC, bR+1, bC) && !canMove(bR, bC, bR, bC-1))
+                    if (!canMove(bR, bC, bR+1, bC, 1) && !canMove(bR, bC, bR, bC-1, 1))
                         noMoveBlueNum++;
                 }
-                else if (!canMove(bR, bC, bR+1, bC) && !canMove(bR, bC, bR, bC-1) && !canMove(bR, bC, bR, bC+1))
+                else if (!canMove(bR, bC, bR+1, bC, 1) && !canMove(bR, bC, bR, bC-1, 1) && !canMove(bR, bC, bR, bC+1, 1))
                     noMoveBlueNum++;
             }
             else if (bC == 0) {
-                if (!canMove(bR, bC, bR-1, bC) && !canMove(bR, bC, bR+1, bC) && !canMove(bR, bC, bR, bC+1))
+                if (!canMove(bR, bC, bR-1, bC, 1) && !canMove(bR, bC, bR+1, bC, 1) && !canMove(bR, bC, bR, bC+1, 1))
                     noMoveBlueNum++;
             }
             else if (bC == 4) {
-                if (!canMove(bR, bC, bR-1, bC) && !canMove(bR, bC, bR+1, bC) && !canMove(bR, bC, bR, bC-1))
+                if (!canMove(bR, bC, bR-1, bC, 1) && !canMove(bR, bC, bR+1, bC, 1) && !canMove(bR, bC, bR, bC-1, 1))
                     noMoveBlueNum++;
             }
-            else if (!canMove(bR, bC, bR-1, bC) && !canMove(bR, bC, bR+1, bC) && !canMove(bR, bC, bR, bC-1) && !canMove(bR, bC, bR, bC+1))
+            else if (!canMove(bR, bC, bR-1, bC, 1) && !canMove(bR, bC, bR+1, bC, 1) && !canMove(bR, bC, bR, bC-1, 1) && !canMove(bR, bC, bR, bC+1, 1))
                 noMoveBlueNum++;
         }
 
@@ -199,19 +199,20 @@ public class HomeworkGameState implements Cloneable {
      * @param fromCol the column of the disc's current position.
      * @param toRow the row of the disc's target position.
      * @param toCol the colmun of the disc's target position.
+     * @param currentPlayer is the player who wants to make a move.
      * @return {@code true} if the disc can be moved, {@code false} otherwise.
      */
-    public boolean canMove(int fromRow, int fromCol, int toRow, int toCol) {
+    public boolean canMove(int fromRow, int fromCol, int toRow, int toCol, int currentPlayer) {
         boolean sameSlot = fromRow == toRow && fromCol == toCol;
         boolean offBoard = fromRow < 0 || fromRow > 4 || fromCol < 0 || fromCol > 4 || toRow < 0 || toRow > 4 || toCol < 0 || toCol > 4;
         boolean neighbour = (fromRow == toRow && (fromCol == toCol-1 || fromCol == toCol+1)) || (fromCol == toCol && (fromRow == toRow-1 || fromRow == toRow+1));
         boolean moveable;
 
         if (!sameSlot && !offBoard && neighbour) {
-            if (board[fromRow][fromCol] == Slot.BLUE && board[toRow][toCol] == Slot.RED) {
+            if (board[fromRow][fromCol] == Slot.BLUE && board[toRow][toCol] == Slot.RED && currentPlayer == 1) {
                 moveable = true;
             }
-            else if (board[fromRow][fromCol] == Slot.RED && board[toRow][toCol] == Slot.EMPTY) {
+            else if (board[fromRow][fromCol] == Slot.RED && board[toRow][toCol] == Slot.EMPTY && currentPlayer == 2) {
                 moveable = true;
             }
             else {
@@ -232,11 +233,11 @@ public class HomeworkGameState implements Cloneable {
      * @param fromCol is the column of the disc's current position.
      * @param toRow is the row of the target position.
      * @param toCol is the column of the target position.
-     *
+     * @param currentPlayer is the player who makes the move.
      * @throws IllegalArgumentException if the disc can not be moved.
      */
-    public void moveDisc(int fromRow, int fromCol, int toRow, int toCol) {
-        if ( !canMove(fromRow, fromCol, toRow, toCol)) {
+    public void moveDisc(int fromRow, int fromCol, int toRow, int toCol, int currentPlayer) {
+        if ( !canMove(fromRow, fromCol, toRow, toCol, currentPlayer)) {
             throw new IllegalArgumentException();
         }
         else {

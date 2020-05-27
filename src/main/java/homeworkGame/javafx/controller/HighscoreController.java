@@ -40,10 +40,10 @@ public class HighscoreController {
     private TableView<GameResult> highScoreTable;
 
     @FXML
-    private TableColumn<GameResult, String> winner;
+    private TableColumn<GameResult, String> winPlayer;
 
     @FXML
-    private TableColumn<GameResult, String> against;
+    private TableColumn<GameResult, String> opPlayer;
 
     @FXML
     private TableColumn<GameResult, Duration> duration;
@@ -56,8 +56,8 @@ public class HighscoreController {
         log.debug("Loading high scores...");
         List<GameResult> highScoreList = gameResultDao.findBest(10);
 
-        winner.setCellValueFactory(new PropertyValueFactory<>("winner"));
-        against.setCellValueFactory(new PropertyValueFactory<>("against"));
+        winPlayer.setCellValueFactory(new PropertyValueFactory<>("winPlayer"));
+        opPlayer.setCellValueFactory(new PropertyValueFactory<>("opPlayer"));
         duration.setCellValueFactory(new PropertyValueFactory<>("duration"));
         created.setCellValueFactory(new PropertyValueFactory<>("created"));
 
