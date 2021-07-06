@@ -8,4 +8,4 @@ Building the project requires JDK 11 or later and [Apache Maven](https://maven.a
 
 ## About
 
-The two player game about moving blue and red discs on a 5x5 board.
+A two player game about moving blue and red discs on a 5x5 board.
